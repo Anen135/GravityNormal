@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum PlanetaryGravityFalloff
+public enum FalloffMode
 {
     Constant,
     InverseSquare
@@ -8,51 +8,37 @@ public enum PlanetaryGravityFalloff
 
 public sealed class PlanetaryGravityProvider : GravityProvider
 {
+    [Header("Planetary Settings")]
     public Transform gravityCenter;
+    public FalloffMode falloff = FalloffMode.Constant;
 
-    public PlanetaryGravityFalloff falloff =
-        PlanetaryGravityFalloff.Constant;
-
-    [Header("Constant")]
-    [SerializeField, Min(0f)]
-    float constantAcceleration = 9.81f;
+    [Min(0f)] public float constantAcceleration = 9.81f;
 
     [Header("Inverse square")]
-    [SerializeField, Min(0f)]
-    float accelerationAtReferenceDistance = 9.81f;
+    [Min(0f)] public float accelerationAtReferenceDistance = 9.81f;
+    [Min(0.01f)] public float referenceDistance = 10f;
+    [Min(0.01f)] public float minimumDistance = 1f;
 
-    [SerializeField, Min(0.01f)]
-    float referenceDistance = 10f;
-
-    [SerializeField, Min(0.01f)]
-    float minimumDistance = 1f;
-
-    public Vector3 CenterPosition =>
-        gravityCenter != null
-            ? gravityCenter.position
-            : transform.position;
+    [Header("Debug")]
+    public bool gizmosEnabled = true;
+    public Color gizmosColor = Color.green;
+    public Vector3 CenterPosition => gravityCenter != null ? gravityCenter.position : transform.position;
 
     public override Vector3 GetAcceleration(Rigidbody body)
     {
-        Vector3 toCenter =
-            CenterPosition - body.worldCenterOfMass;
+        Vector3 toCenter = CenterPosition - body.worldCenterOfMass;
 
         float sqrDistance = toCenter.sqrMagnitude;
 
-        if (sqrDistance < 0.0001f)
-            return Vector3.zero;
+        if (sqrDistance < 0.0001f) return Vector3.zero;
 
         float distance = Mathf.Sqrt(sqrDistance);
         Vector3 direction = toCenter / distance;
 
         float acceleration = falloff switch
         {
-            PlanetaryGravityFalloff.Constant =>
-                constantAcceleration,
-
-            PlanetaryGravityFalloff.InverseSquare =>
-                CalculateInverseSquareAcceleration(distance),
-
+            FalloffMode.Constant => constantAcceleration,
+            FalloffMode.InverseSquare => CalculateInverseSquareAcceleration(distance),
             _ => constantAcceleration
         };
 
@@ -62,32 +48,15 @@ public sealed class PlanetaryGravityProvider : GravityProvider
     float CalculateInverseSquareAcceleration(float distance)
     {
         distance = Mathf.Max(distance, minimumDistance);
-
         float ratio = referenceDistance / distance;
-
-        return
-            accelerationAtReferenceDistance *
-            ratio *
-            ratio;
+        return accelerationAtReferenceDistance * ratio * ratio;
     }
 
-    void OnValidate()
-    {
-        constantAcceleration =
-            Mathf.Max(0f, constantAcceleration);
-
-        accelerationAtReferenceDistance =
-            Mathf.Max(0f, accelerationAtReferenceDistance);
-
-        referenceDistance =
-            Mathf.Max(0.01f, referenceDistance);
-
-        minimumDistance =
-            Mathf.Max(0.01f, minimumDistance);
-    }
 
     void OnDrawGizmosSelected()
     {
+        if (!gizmosEnabled) return;
+        Gizmos.color = gizmosColor;
         Gizmos.DrawWireSphere(CenterPosition, minimumDistance);
     }
 }

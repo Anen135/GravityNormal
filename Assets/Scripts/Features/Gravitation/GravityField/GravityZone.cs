@@ -1,37 +1,33 @@
 using System.Collections.Generic;
+using Lucy.Core.Extensions;
 using UnityEngine;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Collider))]
 public sealed class GravityZone : GravityField
-{
-    
-	[Header("Filtering")]
-    public LayerMask affectedLayers = ~0;
-    public bool autoAddGravityBody = true;
-    
+{    
+    [System.Serializable]
+    public struct EnterSettings
+    {
+        public bool useDefaultGravity;
+        public Vector3 linearVelocityOnEnter;
+        public Vector3 angularVelocityOnEnter;
+        public bool wakeUpOnEnter;
+    }
 	[Header("Enter settings")]
-    public bool wakeUpOnEnter = true;
-    public bool clearLinearVelocityOnEnter;
-    public bool clearAngularVelocityOnEnter;
-    
-	[Header("Rigidbody settings")]
-    public bool useDefaultGravity = false;
-    Collider triggerCollider;
+    public EnterSettings enterSettings = new();    
+    public Collider triggerCollider;
     Dictionary<GravityBody, int> overlaps = new();
     
 	void OnValidate()
     {
-        if (triggerCollider == null) {Debug.LogWarning("Trigger collider is not assigned."); return;}
-        if (!triggerCollider.isTrigger) {Debug.LogWarning("Trigger collider is not a trigger."); return;}
+        triggerCollider = GetComponent<Collider>();
+        triggerCollider.isTrigger = true;
     }
     
 	void OnTriggerEnter(Collider other)
     {
-        if (!IsAffectedLayer(other.gameObject.layer)) return;
-        Rigidbody body = other.attachedRigidbody;
-        if (body == null) return;
-        if (!TryGetComponent<GravityBody>(out var gravityBody) && autoAddGravityBody) gravityBody = GravityBody.Ensure(body);
-        if (gravityBody == null) return;
+        if (!IsAffectedLayer(other.gameObject.layer) || !other.attachedRigidbody) return;
+        var gravityBody = other.attachedRigidbody.RequireComponent<GravityBody>();
         if (overlaps.TryGetValue(gravityBody, out int overlapCount))
         {
             overlaps[gravityBody] = overlapCount + 1;
@@ -39,15 +35,13 @@ public sealed class GravityZone : GravityField
         }
         overlaps.Add(gravityBody, 1);
         gravityBody.AddField(this);
-        if (useDefaultGravity) gravityBody.DisableDefaultGravity();
-        ApplyEnterSettings(body, gravityBody);
+        if (!other.attachedRigidbody.isKinematic) ApplyEnterSettings(other.attachedRigidbody);
     }
     
 	void OnTriggerExit(Collider other)
     {
-        Rigidbody body = other.attachedRigidbody;
-        if (body == null) return;
-        if (!body.TryGetComponent<GravityBody>(out var gravityBody)) return;
+        if (other.attachedRigidbody == null) return;
+        if (!other.attachedRigidbody.TryGetComponent<GravityBody>(out var gravityBody)) return;
         if (!overlaps.TryGetValue(gravityBody, out int overlapCount)) return;
         overlapCount--;
         if (overlapCount > 0)
@@ -58,9 +52,10 @@ public sealed class GravityZone : GravityField
         overlaps.Remove(gravityBody);
         gravityBody.RemoveField(this);
     }
-    
+    void OnEnable() => triggerCollider.enabled = true;
 	void OnDisable()
     {
+        triggerCollider.enabled = false;
         foreach (var pair in overlaps)
         {
             if (pair.Key != null) pair.Key.RemoveField(this);
@@ -68,13 +63,12 @@ public sealed class GravityZone : GravityField
         overlaps.Clear();
     }
     
-	void ApplyEnterSettings( Rigidbody body, GravityBody gravityBody)
+	void ApplyEnterSettings( Rigidbody rb)
     {
-        if (!useDefaultGravity) gravityBody.DisableDefaultGravity();
-        if (body.isKinematic) return;
-        if (clearLinearVelocityOnEnter) body.linearVelocity = Vector3.zero;
-        if (clearAngularVelocityOnEnter) body.angularVelocity = Vector3.zero;
-        if (wakeUpOnEnter) body.WakeUp();
+        rb.useGravity = enterSettings.useDefaultGravity;
+        rb.linearVelocity = enterSettings.linearVelocityOnEnter;
+        rb.angularVelocity = enterSettings.angularVelocityOnEnter;
+        if (enterSettings.wakeUpOnEnter) rb.WakeUp();
     }
-    bool IsAffectedLayer(int layer) => (affectedLayers.value & (1 << layer)) != 0;
+    bool IsAffectedLayer(int layer) => (layerMask.value & (1 << layer)) != 0;
 }
