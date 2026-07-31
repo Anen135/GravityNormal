@@ -9,33 +9,28 @@ namespace Lucy.Core
 
         [Header("Gravity Settings")]
         public float groundedGravity = -2f;
-
         public float gravity = -9.81f;
 
         [Header("Debug")]
         public Vector3 velocity;
+        public bool isGrounded;
 
         #endregion
 
         #region Properties
 
         public CharacterController Controller { get; protected set; }
-
         public override Vector3 Velocity => velocity;
-
-        public override bool IsGrounded => Controller != null && Controller.isGrounded;
 
         #endregion
 
-        #region Unity events
+        #region Unity messages
 
-        void Awake()
-        {
-            Controller = GetComponent<CharacterController>();
-        }
+        void Awake() => Controller = GetComponent<CharacterController>();
 
         void Update()
         {
+            isGrounded = groundProvider.IsGrounded;
             HandleMovement(Time.deltaTime);
         }
 
@@ -43,22 +38,13 @@ namespace Lucy.Core
 
         #region Public methods
 
-        public override void SetVelocity(Vector3 value)
-        {
-            velocity = value;
-        }
+        public override void SetVelocity(Vector3 value) => velocity = value;
+
 
         public override void Jump()
         {
-            if (!MovementAllowed)
-                return;
-
-            if (!IsGrounded)
-                return;
-
-            velocity.y = Mathf.Sqrt(
-                jumpHeight * -2f * gravity);
-
+            if (!IsGrounded) return;
+            velocity.y = Mathf.Sqrt( jumpHeight * -2f * gravity);
             OnJumpPerformed?.Invoke();
         }
 

@@ -1,5 +1,5 @@
-using UnityEngine;
 using Lucy.Core;
+using UnityEngine;
 
 namespace Lucy.Features.MovementSystem
 {
@@ -15,27 +15,20 @@ namespace Lucy.Features.MovementSystem
         [Range(0f, 1f)]
         public float airControl = 0.35f;
 
-        [Header("Ground Check")]
-        public Transform pivot;
-
-        [Min(0.01f)]
-        public float groundCheckRadius = 0.25f;
-        public LayerMask groundMask = ~0;
-        public QueryTriggerInteraction groundTriggerInteraction = QueryTriggerInteraction.Ignore;
-
         [Header("Debug")]
-        public bool gizmosEnabled;
-        public bool isGrounded;
         public bool jumpRequested;
         public Rigidbody rb;
 
         #endregion
 
         #region Properties
-        public override Vector3 Velocity => rb != null ? rb.linearVelocity : Vector3.zero;
+
+        public override Vector3 Velocity =>
+            rb != null ? rb.linearVelocity : Vector3.zero;
+
         #endregion
 
-        #region Unity Messages
+        #region Unity messages
 
         void Awake()
         {
@@ -44,7 +37,7 @@ namespace Lucy.Features.MovementSystem
 
         void FixedUpdate()
         {
-            UpdateGroundedState();
+            RefreshGrounding();
             HandleHorizontalMovement();
             HandleJump();
             HandleRotation();
@@ -53,13 +46,6 @@ namespace Lucy.Features.MovementSystem
         void OnDisable()
         {
             jumpRequested = false;
-        }
-
-        void OnDrawGizmosSelected()
-        {
-            if (!gizmosEnabled) return;
-            if (groundCheck == null) return;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
 
         #endregion
@@ -102,7 +88,7 @@ namespace Lucy.Features.MovementSystem
                 targetVelocity -
                 currentHorizontalVelocity;
 
-            float currentControl = isGrounded ? 1f : airControl;
+            float currentControl = IsGrounded ? 1f : airControl;
 
             float maximumVelocityChange =
                 acceleration *
@@ -129,7 +115,8 @@ namespace Lucy.Features.MovementSystem
             if (!MovementAllowed)
                 return;
 
-            if (!isGrounded) return;
+            if (!IsGrounded)
+                return;
 
             Vector3 currentVelocity = rb.linearVelocity;
 
@@ -141,9 +128,14 @@ namespace Lucy.Features.MovementSystem
 
             float gravityMagnitude = Mathf.Abs(Physics.gravity.y);
 
-            float jumpVelocity = Mathf.Sqrt( jumpHeight * 2f * gravityMagnitude);
-            rb.AddForce( Vector3.up * jumpVelocity, ForceMode.VelocityChange);
-            isGrounded = false;
+            float jumpVelocity = Mathf.Sqrt(
+                jumpHeight * 2f * gravityMagnitude);
+
+            rb.AddForce(
+                Vector3.up * jumpVelocity,
+                ForceMode.VelocityChange);
+
+            ResetGrounding();
             OnJumpPerformed?.Invoke();
         }
 
@@ -159,17 +151,6 @@ namespace Lucy.Features.MovementSystem
                     Time.fixedDeltaTime);
 
             rb.MoveRotation(targetRotation);
-        }
-
-        void UpdateGroundedState()
-        {
-            if (groundCheck == null)
-            {
-                isGrounded = false;
-                return;
-            }
-
-            isGrounded = Physics.CheckSphere( groundCheck.position, groundCheckRadius, groundMask, groundTriggerInteraction);
         }
 
         #endregion

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace Lucy.Core.Interfaces
+namespace Lucy.Core
 {
-    public abstract class GroundingProvider
+    public abstract class GroundingProvider : MonoBehaviour
     {
-        public abstract bool IsGrounded(Movement movement);
+        public abstract bool IsGrounded { get; }        
     }
 }
