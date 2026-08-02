@@ -54,8 +54,7 @@ namespace Lucy.Core
 
         void HandleMovement(float deltaTime)
         {
-            Vector3 horizontalVelocity =
-                CalculateTargetHorizontalVelocity();
+            Vector3 horizontalVelocity = CalculateTargetHorizontalVelocity();
 
             velocity.x = horizontalVelocity.x;
             velocity.z = horizontalVelocity.z;

@@ -7,7 +7,6 @@ namespace Lucy.Core
     public class Movement : MonoBehaviour
     {
         #region Inspector
-
         [Header("Movement Settings")]
         [Min(0f)] public float baseSpeed = 5f;
         [Min(0f)] public float sprintMultiplier = 1.5f;
@@ -84,6 +83,7 @@ namespace Lucy.Core
         public void SetCrouching(bool value) => isCrouching = value;
 
         public virtual void SetVelocity(Vector3 value) => moveDirection = value;
+        public virtual void SetVelocity(Vector2 value) => moveDirection = new Vector3(value.x, moveDirection.y, value.y);
 
         public virtual void Jump() => moveDirection.y = jumpHeight;
 

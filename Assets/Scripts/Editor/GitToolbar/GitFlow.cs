@@ -5,7 +5,6 @@ public static class GitFlow
         return Git.Run("flow init");
     }
 
-
     // Feature
 
     public static string FeatureStart(string name)
