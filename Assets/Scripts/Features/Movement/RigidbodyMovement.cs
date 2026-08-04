@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Lucy.Features.MovementSystem
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(GroundingProvider))]
     public class RigidbodyMovement : Movement
     {
         #region Inspector
@@ -17,14 +17,14 @@ namespace Lucy.Features.MovementSystem
         public bool jumpRequested;
         public bool isGrounded;
         public Rigidbody rb;
+        public GroundingProvider groundProvider;
 
         #endregion
 
         #region Properties
 
-
-        public override Vector3 Velocity =>
-            rb != null ? rb.linearVelocity : Vector3.zero;
+        public override bool IsGrounded => groundProvider != null && groundProvider.IsGrounded;
+        public override Vector3 Velocity => rb != null ? rb.linearVelocity : Vector3.zero;
 
         #endregion
 

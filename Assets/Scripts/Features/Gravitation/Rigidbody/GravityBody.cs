@@ -5,14 +5,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GravityBody : MonoBehaviour
 {
+    [Header("Dependencies")]
+    public Rigidbody rb;
     [Header("Debug")]
     public Vector3 currentAcceleration;
-    public Rigidbody rb;
-    List<GravityField> activeFields = new();
+    public List<GravityField> activeFields = new();
 
     public Vector3 CurrentGravityDirection => currentAcceleration.sqrMagnitude < 0.0001f ? Vector3.zero : currentAcceleration.normalized;
-    
-    void Awake() => rb = GetComponent<Rigidbody>();
+
+    void Awake()
+    {
+        if (rb == null) throw new System.Exception($"Rigidbody is not assigned on {name}");
+    }
+
+    void OnValidate()
+    {
+        rb = rb != null ? rb : GetComponent<Rigidbody>();
+    }
+
     void OnDisable() => currentAcceleration = Vector3.zero;
 
     void FixedUpdate()

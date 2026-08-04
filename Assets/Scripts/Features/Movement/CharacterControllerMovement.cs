@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Lucy.Core
 {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(GroundingProvider))]
     public class CharacterControllerMovement : Movement
     {
         #region Inspector
@@ -14,6 +14,7 @@ namespace Lucy.Core
         [Header("Debug")]
         public Vector3 velocity;
         public bool isGrounded;
+        public GroundingProvider groundProvider;
 
         #endregion
 
@@ -25,14 +26,19 @@ namespace Lucy.Core
         #endregion
 
         #region Unity messages
-
-        void Awake() => Controller = GetComponent<CharacterController>();
-
         void Update()
         {
             isGrounded = groundProvider.IsGrounded;
             HandleMovement(Time.deltaTime);
         }
+
+#if UNITY_EDITOR
+        void OnValidate()
+        {
+            if (groundProvider == null) groundProvider = GetComponent<GroundingProvider>();
+            if (Controller == null) Controller = GetComponent<CharacterController>();
+        }
+#endif
 
         #endregion
 

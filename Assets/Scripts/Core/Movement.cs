@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Lucy.Core
 {
-    [RequireComponent(typeof(GroundingProvider))]
     public class Movement : MonoBehaviour
     {
         #region Inspector
@@ -17,9 +16,6 @@ namespace Lucy.Core
         public bool rotateTowardsMovement;
         [Min(0f)] public float rotationSpeed = 720f;
 
-        [Header("Grounding Settings")]
-        public GroundingProvider groundProvider;
-
         [Header("Debug")]
         public Vector3 moveDirection;
         public bool isSprinting;
@@ -32,7 +28,7 @@ namespace Lucy.Core
         #region Properties
 
         public virtual Vector3 Velocity => Vector3.zero;
-        public virtual bool IsGrounded => groundProvider.IsGrounded;
+        public virtual bool IsGrounded => false;
         public bool IsMoving => moveDirection.sqrMagnitude > 0.01f;
         public bool MovementAllowed => canMove && !isMovementLocked;
 
@@ -64,15 +60,6 @@ namespace Lucy.Core
         public Action OnJumpPerformed;
         public Action OnCrouchPerformed;
         public Action OnSprintPerformed;
-
-        #endregion
-
-        #region Unity messages
-
-        protected virtual void OnValidate()
-        {
-            if (groundProvider == null) groundProvider = GetComponent<GroundingProvider>();
-        }
 
         #endregion
 

@@ -9,19 +9,23 @@ public sealed class GravityZone : GravityField
     public struct EnterSettings
     {
         public bool useDefaultGravity;
+        public bool useEnterVelocity;
+        public bool wakeUpOnEnter;
         public Vector3 linearVelocityOnEnter;
         public Vector3 angularVelocityOnEnter;
-        public bool wakeUpOnEnter;
     }
 	[Header("Enter settings")]
     public EnterSettings enterSettings = new();    
     public Collider triggerCollider;
     Dictionary<GravityBody, int> overlaps = new();
+
+
     
 	void OnValidate()
     {
         triggerCollider = GetComponent<Collider>();
         triggerCollider.isTrigger = true;
+        
     }
     
 	void OnTriggerEnter(Collider other)
@@ -35,7 +39,7 @@ public sealed class GravityZone : GravityField
         }
         overlaps.Add(gravityBody, 1);
         gravityBody.AddField(this);
-        if (!other.attachedRigidbody.isKinematic) ApplyEnterSettings(other.attachedRigidbody);
+        ApplyEnterSettings(other.attachedRigidbody);
     }
     
 	void OnTriggerExit(Collider other)
@@ -65,9 +69,13 @@ public sealed class GravityZone : GravityField
     
 	void ApplyEnterSettings( Rigidbody rb)
     {
+        if (rb.isKinematic) return;
         rb.useGravity = enterSettings.useDefaultGravity;
-        rb.linearVelocity = enterSettings.linearVelocityOnEnter;
-        rb.angularVelocity = enterSettings.angularVelocityOnEnter;
+        if (enterSettings.useEnterVelocity)
+        {
+            rb.linearVelocity = enterSettings.linearVelocityOnEnter;
+            rb.angularVelocity = enterSettings.angularVelocityOnEnter;
+        }
         if (enterSettings.wakeUpOnEnter) rb.WakeUp();
     }
     bool IsAffectedLayer(int layer) => (layerMask.value & (1 << layer)) != 0;

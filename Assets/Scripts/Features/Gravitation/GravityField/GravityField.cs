@@ -6,10 +6,16 @@ public class GravityField : MonoBehaviour
     [Header("Settings")]
     public LayerMask layerMask = ~0;
     public GravityBlendMode blendMode = GravityBlendMode.Override;
+    [Tooltip("Higher priority fields will override lower priority fields when using the Override blend mode.")]
     public int priority;
 
     [Header("Dependencies")]
     public GravityProvider provider;
+
+    void OnValidate()
+    {
+        provider = provider != null ? provider : GetComponent<GravityProvider>();
+    }
 
     public bool TryGetAcceleration(Rigidbody body, out Vector3 acceleration)
     {
