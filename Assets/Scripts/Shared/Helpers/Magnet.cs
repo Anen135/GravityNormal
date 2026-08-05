@@ -1,8 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using Lucy.Shared.Extensions;
-namespace Lucy.Shared.Helpers
+using Lucy.Core.Extensions;
+namespace Lucy.Core.Helpers
 {
     public static class Magnet
     {

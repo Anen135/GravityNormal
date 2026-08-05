@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Lucy.Shared.Basic
+namespace Lucy.Core.Basic
 {
     public class BasicHumanoidAnimations : MonoBehaviour
     {

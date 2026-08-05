@@ -15,13 +15,15 @@ public class GravityBody : MonoBehaviour
 
     void Awake()
     {
-        if (rb == null) throw new System.Exception($"Rigidbody is not assigned on {name}");
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        if (rb == null) Debug.LogError($"Rigidbody is not assigned and could not be found on {gameObject.name}.", this);
     }
 
     void OnValidate()
     {
         rb = rb != null ? rb : GetComponent<Rigidbody>();
     }
+
 
     void OnDisable() => currentAcceleration = Vector3.zero;
 

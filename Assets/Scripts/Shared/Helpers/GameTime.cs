@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Lucy.Shared.Helpers
+namespace Lucy.Core.Helpers
 {
     public enum TimeMode
     {

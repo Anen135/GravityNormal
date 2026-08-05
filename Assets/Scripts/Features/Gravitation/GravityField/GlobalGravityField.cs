@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Lucy.Core.Extensions;
 using Lucy.Core.LifecycleEvents;
-using Lucy.Shared.Extensions;
 using UnityEngine;
 
 namespace Lucy.Gravity

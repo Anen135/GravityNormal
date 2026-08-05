@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 
-namespace Lucy.Shared.Helpers
+namespace Lucy.Core.Helpers
 {
     public class CinemachineHelper: MonoBehaviour
     {

@@ -11,7 +11,7 @@ namespace Lucy.Features.PlayerAnimations.Runtime
         void Awake() => movement.OnJumpPerformed += () => animator.SetTrigger("Jump");
         void Update()
         {
-            animator.SetFloat("Speed", movement.HorizontalVelocity.magnitude);
+            animator.SetFloat("Speed", movement.Velocity.magnitude);
             animator.SetBool("FreeFall", !movement.IsGrounded);
             animator.SetBool("Grounded", movement.IsGrounded);
         }

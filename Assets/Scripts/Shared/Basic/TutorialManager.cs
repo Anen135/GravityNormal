@@ -3,7 +3,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
 
-namespace Lucy.Shared.Basic
+namespace Lucy.Core.Basic
 {
     public class TutorialManager : MonoBehaviour
     {

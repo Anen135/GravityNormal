@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 
-namespace Lucy.Shared.Extensions
+namespace Lucy.Core.Extensions
 {
     public static class PlayableDirectorExtensions 
     {

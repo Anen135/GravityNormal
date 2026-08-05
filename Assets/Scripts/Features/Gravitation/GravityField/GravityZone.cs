@@ -18,8 +18,6 @@ public sealed class GravityZone : GravityField
     public EnterSettings enterSettings = new();    
     public Collider triggerCollider;
     Dictionary<GravityBody, int> overlaps = new();
-
-
     
 	void OnValidate()
     {
@@ -30,7 +28,7 @@ public sealed class GravityZone : GravityField
     
 	void OnTriggerEnter(Collider other)
     {
-        if (!IsAffectedLayer(other.gameObject.layer) || !other.attachedRigidbody) return;
+        if (!layerMask.Contains(other.gameObject.layer) || !other.attachedRigidbody) return;
         var gravityBody = other.attachedRigidbody.RequireComponent<GravityBody>();
         if (overlaps.TryGetValue(gravityBody, out int overlapCount))
         {
@@ -78,5 +76,4 @@ public sealed class GravityZone : GravityField
         }
         if (enterSettings.wakeUpOnEnter) rb.WakeUp();
     }
-    bool IsAffectedLayer(int layer) => (layerMask.value & (1 << layer)) != 0;
 }

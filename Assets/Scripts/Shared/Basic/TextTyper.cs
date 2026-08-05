@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace Lucy.Shared.Basic
+namespace Lucy.Core.Basic
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class TextTyper : MonoBehaviour

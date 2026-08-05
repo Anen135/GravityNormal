@@ -1,5 +1,5 @@
 using System.Collections;
-using Lucy.Shared.Basic; // Подключаем пространство имен нашего тайпера
+using Lucy.Core.Basic; // Подключаем пространство имен нашего тайпера
 using UnityEngine;
 
 public class InspectText : MonoBehaviour

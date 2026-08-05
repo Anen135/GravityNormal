@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7718509422060259992}
   - component: {fileID: 7266788438233349374}
   - component: {fileID: 6372759015059307411}
+  - component: {fileID: 3394445898513852715}
+  - component: {fileID: 5459169498554732039}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4382041718991239072}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
@@ -113,6 +115,41 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3394445898513852715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382041718991239072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lucy.Core.Entity
+  maxHealth: 1000
+  currentHealth: 0
+  immortal: 0
+  showLookDirection: 0
+  lookLineColor: {r: 0, g: 1, b: 1, a: 1}
+  lookLineLength: 2
+  lookLineHeight: 1
+--- !u!114 &5459169498554732039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382041718991239072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8ca008280fb8a4e8103bca35ecf260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  entity: {fileID: 3394445898513852715}
 --- !u!1 &8192360016445679939
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +201,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8192360016445679939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -242,9 +279,9 @@ MonoBehaviour:
   gravityCenter: {fileID: 8125503807895515265}
   falloff: 1
   constantAcceleration: 9.81
-  accelerationAtReferenceDistance: 9.81
-  referenceDistance: 60
-  minimumDistance: 60
+  maximumAcceleration: 9.8
+  acceleration: 5
+  referenceDistance: 200
   gizmosEnabled: 1
   minimumDistanceColor: {r: 0, g: 1, b: 0, a: 1}
   referenceDistanceColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -266,10 +303,10 @@ MonoBehaviour:
   blendMode: 1
   priority: 0
   provider: {fileID: 4954246019357177774}
-  enableEnterSetting: 0
   enterSettings:
     useDefaultGravity: 0
+    useEnterVelocity: 0
+    wakeUpOnEnter: 0
     linearVelocityOnEnter: {x: 0, y: 0, z: 0}
     angularVelocityOnEnter: {x: 0, y: 0, z: 0}
-    wakeUpOnEnter: 0
   triggerCollider: {fileID: 1573180140616787790}

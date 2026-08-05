@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Lucy.Shared.Helpers
+namespace Lucy.Core.Helpers
 {
     public class RotateHelper : MonoBehaviour
     {

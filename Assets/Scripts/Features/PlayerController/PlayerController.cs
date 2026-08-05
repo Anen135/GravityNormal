@@ -12,6 +12,8 @@ namespace Lucy.Features.PlayerController
         [Header("Input Bindings PlayerController")]
         public ButtonInputBinder buttons = new();
         public Vector2InputBinder vector2 = new();
+        public FloatInputBinder floats = new();
+        public AxisInputBinder axis = new();
 
         #endregion
 
@@ -25,6 +27,8 @@ namespace Lucy.Features.PlayerController
             subscriptions = new DisposableGroup();
             buttons.Bind(InputProvider.Global.Controls.Player, subscriptions);
             vector2.Bind(InputProvider.Global.Controls.Player, subscriptions);
+            floats.Bind(InputProvider.Global.Controls.Player, subscriptions);
+            axis.Bind(InputProvider.Global.Controls.Player, subscriptions);
         }
 
         protected virtual void OnDisable()

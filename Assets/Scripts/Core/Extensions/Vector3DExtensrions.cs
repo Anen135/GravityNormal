@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Lucy.Shared.Extensions
+namespace Lucy.Core.Extensions
 {
     public static class Vector3Extensions
     {

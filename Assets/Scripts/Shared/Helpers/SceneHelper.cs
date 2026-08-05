@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Lucy.Shared.Helpers
+namespace Lucy.Core.Helpers
 {
     public class SceneHelper: MonoBehaviour
     {

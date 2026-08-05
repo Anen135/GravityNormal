@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Lucy.Shared.Extensions; // Transform.ClearChildren
+using Lucy.Core.Extensions; // Transform.ClearChildren
 using UnityEngine;
 using UnityEngine.Events;
 

@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-namespace Lucy.Shared.Extensions
+namespace Lucy.Core.Extensions
 {
     internal class StaticCoroutine : MonoBehaviour
     {

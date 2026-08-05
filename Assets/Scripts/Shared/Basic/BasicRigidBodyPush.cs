@@ -1,6 +1,7 @@
+using Lucy.Core.Extensions;
 using UnityEngine;
 
-namespace Lucy.Shared.Basic
+namespace Lucy.Core.Basic
 {
     public class BasicRigidBodyPush : MonoBehaviour
     {
@@ -12,8 +13,7 @@ namespace Lucy.Shared.Basic
         {
             Rigidbody body = hit.collider.attachedRigidbody;
             if (body == null || body.isKinematic) return;
-            var bodyLayerMask = 1 << body.gameObject.layer;
-            if ((bodyLayerMask & pushLayers.value) == 0) return;
+            if (!pushLayers.Contains(hit.gameObject.layer)) return;
             if (hit.moveDirection.y < -0.3f) return;
             Vector3 pushDir = new(hit.moveDirection.x, 0.0f, hit.moveDirection.z);
             body.AddForce(pushDir * strength, ForceMode.Impulse);
