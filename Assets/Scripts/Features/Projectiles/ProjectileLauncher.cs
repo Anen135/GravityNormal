@@ -32,7 +32,7 @@ namespace Lucy.Features.Projectiles.Runtime
 
         #region Public methods
 
-        public void Launch()
+        public Projectile Launch()
         {
             Projectile projectile = Instantiate( projectilePrefab, firePoint.position, firePoint.rotation );
 
@@ -46,7 +46,7 @@ namespace Lucy.Features.Projectiles.Runtime
             projectileRigidbody.linearVelocity = ownerRigidbody.GetPointVelocity(firePoint.position);
 
             projectile.Launch(launchPower);
-
+            return projectile;
         }
 
         #endregion

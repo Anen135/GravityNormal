@@ -1,141 +1,64 @@
-using System;
-using Lucy.Core;
 using UnityEngine;
 
 namespace Lucy.Features.SpaceShip.Runtime
 {
-    [RequireComponent(typeof(Rigidbody))]
-    public class SpaceShipEngine : Movement
+    public class SpaceShipMovement : SpaceShipEngine
     {
         #region Inspector
 
-        [Header("References SpaceShip Movement")]
-        public Rigidbody rb;
-
-        [Header("Settings SpaceShip Movement")]
-        [Min(0f)] public float forwardAcceleration = 15f;
-        [Min(0f)] public float brakingAcceleration = 20f;
-        [Min(0f)] public float rotationAcceleration = 5f;
+        [Header("Settings SpaceShip Movement With Stabilizator")]
+        public bool stabilizationEnabled = true;
+        [Min(0.01f)] public float stabilizationTime = 0.5f;
+        [Min(0f)] public float stabilizationDeadZone = 0.01f;
 
         [Header("Debug")]
-        public bool isThrusting;
-        public bool isBraking;
-        public float rollInput;
-        public Vector3 rotationInput;
-        public Vector3 appliedAcceleration;
-        public Vector3 appliedAngularAcceleration;
-
-        #endregion
-
-        #region Properties
-
-        public override Vector3 Velocity => rb.linearVelocity;
-        public override bool IsGrounded => false;
-
-        #endregion
-
-        #region Events
-
-        public event Action<bool> OnThrustingChanged;
-        public event Action<bool> OnBrakingChanged;
-        public event Action<Vector3> OnRotationApplied;
+        public bool isStabilizing;
 
         #endregion
 
         #region Unity messages
 
-#if UNITY_EDITOR
-        protected virtual void OnValidate()
+        protected override void FixedUpdate()
         {
-            rb = rb != null ? rb : GetComponent<Rigidbody>();
-        }
-#endif
-
-        protected virtual void FixedUpdate()
-        {
-            appliedAcceleration = Vector3.zero;
-            appliedAngularAcceleration = Vector3.zero;
-
-            if (!MovementAllowed)
-            {
-                OnRotationApplied?.Invoke(Vector3.zero);
-                return;
-            }
-
-            if (isThrusting)
-                appliedAcceleration += transform.forward * forwardAcceleration;
-
-            if (isBraking && rb.linearVelocity.sqrMagnitude > 0.001f)
-            {
-                float acceleration = Mathf.Min(
-                    brakingAcceleration,
-                    rb.linearVelocity.magnitude / Time.fixedDeltaTime
-                );
-
-                appliedAcceleration -= rb.linearVelocity.normalized * acceleration;
-            }
-
-            if (appliedAcceleration.sqrMagnitude > 0.0001f)
-                rb.AddForce(appliedAcceleration, ForceMode.Acceleration);
-
-            rotationInput = GetRotationInput();
-
-            if (rotationInput.sqrMagnitude < 0.001f)
-            {
-                OnRotationApplied?.Invoke(Vector3.zero);
-                return;
-            }
-
-            appliedAngularAcceleration =
-                new Vector3(-rotationInput.y, rotationInput.x, rotationInput.z)
-                * rotationAcceleration;
-
-            rb.AddRelativeTorque(
-                appliedAngularAcceleration,
-                ForceMode.Acceleration
-            );
-
-            OnRotationApplied?.Invoke(appliedAngularAcceleration);
+            isStabilizing = false;
+            base.FixedUpdate();
         }
 
         #endregion
 
         #region Movement
 
-        protected virtual Vector3 GetRotationInput()
+        protected override Vector3 GetRotationInput()
         {
-            Vector2 input = new(moveDirection.x, moveDirection.z);
+            Vector3 input = base.GetRotationInput();
 
-            if (input.sqrMagnitude > 1f)
-                input.Normalize();
+            if (!stabilizationEnabled || rotationAcceleration <= 0f) return input;
 
-            return new Vector3(input.x, input.y, rollInput);
+            Vector3 angularVelocity = Quaternion.Inverse(rb.rotation) * rb.angularVelocity;
+
+            float stabilizationFactor = 1f / (rotationAcceleration * Mathf.Max(stabilizationTime, Time.fixedDeltaTime));
+
+            if (Mathf.Abs(input.y) < 0.001f && Mathf.Abs(angularVelocity.x) > stabilizationDeadZone)
+            {
+                input.y = Mathf.Clamp( angularVelocity.x * stabilizationFactor, -1f, 1f );
+                isStabilizing = true;
+            }
+
+            if (Mathf.Abs(input.x) < 0.001f && Mathf.Abs(angularVelocity.y) > stabilizationDeadZone)
+            {
+                input.x = Mathf.Clamp( -angularVelocity.y * stabilizationFactor, -1f, 1f );
+                isStabilizing = true;
+            }
+
+            if (Mathf.Abs(input.z) < 0.001f && Mathf.Abs(angularVelocity.z) > stabilizationDeadZone)
+            {
+                input.z = Mathf.Clamp( -angularVelocity.z * stabilizationFactor, -1f, 1f );
+                isStabilizing = true;
+            }
+
+            return input;
         }
-
-        #endregion
-
-        #region Public methods
-
-        public override void Jump() => SetThrusting(true);
-
-        public void SetThrusting(bool value)
-        {
-            if (isThrusting == value) return;
-
-            isThrusting = value;
-            OnThrustingChanged?.Invoke(value);
-        }
-
-        public void SetBraking(bool value)
-        {
-            if (isBraking == value) return;
-
-            isBraking = value;
-            OnBrakingChanged?.Invoke(value);
-        }
-
-        public void Roll(float input) => rollInput = Mathf.Clamp(input, -1f, 1f);
 
         #endregion
     }
-}   
+}
