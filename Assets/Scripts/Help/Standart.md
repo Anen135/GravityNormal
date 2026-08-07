@@ -7,5 +7,5 @@
 7. Abstractions are preferable to an interface
 8. Use RequireComponent to indicate the required dependencies for the component.
 9. Use RequireComponent with an abstract class/interface to indicate the need to implement the abstraction.
-10. All dependencies and links to other components are listed under the heading "Dependencies"
+10. All dependencies and links to other components are listed under the heading "References"
 11. In links, always try to specify the type as accurately as possible, from bad to better: object->GameObject->Monobehaviour->BaseClass->ClassImplementation.

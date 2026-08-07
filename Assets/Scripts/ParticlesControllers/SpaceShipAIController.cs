@@ -16,9 +16,9 @@ namespace Lucy.Features.SpaceShip.Runtime
 
         #region Inspector
 
-        [Header("References SpaceShip AI Controller")]
+        [Header("References")]
         public SpaceShipEngine engine;
-        public ProjectileLauncher launcher;
+        public AISpaceShipWeapon weapon;
         public Rigidbody rb;
         public GravityBody gravityBody;
         public Transform target;
@@ -139,14 +139,9 @@ namespace Lucy.Features.SpaceShip.Runtime
         {
             desiredFlightDirection = directionToTarget;
 
-            float closingSpeed = Mathf.Max(
-                0f,
-                Vector3.Dot(rb.linearVelocity, directionToTarget)
-            );
+            float closingSpeed = Mathf.Max( 0f, Vector3.Dot(rb.linearVelocity, directionToTarget) );
 
-            calculatedRetreatDistance =
-                retreatDistance +
-                closingSpeed * turnPredictionTime;
+            calculatedRetreatDistance = retreatDistance + closingSpeed * turnPredictionTime;
 
             if (distanceToTarget <= calculatedRetreatDistance)
             {
@@ -163,14 +158,10 @@ namespace Lucy.Features.SpaceShip.Runtime
             engine.SetBraking(false);
             engine.SetThrusting(angleToTarget <= thrustAngle);
 
-            if (distanceToTarget <= fireDistance &&
-                angleToTarget <= fireAngle &&
-                Time.time >= nextFireTime)
+            if (distanceToTarget <= fireDistance && angleToTarget <= fireAngle && Time.time >= nextFireTime)
             {
-                launcher.Launch();
-
-                nextFireTime =
-                    Time.time + fireInterval;
+                weapon.Fire();
+                nextFireTime = Time.time + fireInterval;
             }
         }
 

@@ -9,8 +9,8 @@ public class Projectile : MonoBehaviour
     public float lifeTime = 0f;
     public LayerMask layerMask;
     
-    public Action<GameObject> OnHit;
-    protected Rigidbody rb;
+    public Action<Collision> OnHit;
+    public Rigidbody rb;
     void Awake() => rb = GetComponent<Rigidbody>();
 
     void Start() => Destroy(gameObject, lifeTime);
@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
         if (!layerMask.Contains(collision.gameObject)) return;
 
         ProcessHit(collision);
-        OnHit?.Invoke(collision.gameObject);
+        OnHit?.Invoke(collision);
     }
 
     public virtual void ProcessHit(Collision collision) {}

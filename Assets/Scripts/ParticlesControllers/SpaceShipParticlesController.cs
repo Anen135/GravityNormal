@@ -83,11 +83,17 @@ namespace Lucy.Features.SpaceShip.Runtime
                     continue;
                 }
 
-                particles.transform.forward =
-                    movement.transform.TransformDirection(-angularAcceleration.normalized);
+                Vector3 direction = movement.transform.TransformDirection(-angularAcceleration.normalized);
+                // Вокруг X
+                // particles.transform.forward = Quaternion.AngleAxis(90f, movement.transform.right) * direction;
 
-                if (!particles.isEmitting)
-                    particles.Play();
+                // // Вокруг Y
+                // particles.transform.forward = Quaternion.AngleAxis(90f, movement.transform.up) * direction;
+
+                // Вокруг Z
+                particles.transform.forward = Quaternion.AngleAxis(-90f, movement.transform.forward) * direction;
+
+                if (!particles.isEmitting) particles.Play();
             }
         }
 

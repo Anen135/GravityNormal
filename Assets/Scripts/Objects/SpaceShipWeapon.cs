@@ -7,7 +7,7 @@ namespace Lucy.Features.SpaceShip.Runtime
     {
         #region Inspector
 
-        [Header("References SpaceShip Weapon")]
+        [Header("References")]
         public ProjectileLauncher launcher;
 
         #endregion
@@ -16,7 +16,7 @@ namespace Lucy.Features.SpaceShip.Runtime
 
         public abstract void Fire();
 
-        public virtual void SetTarget(Transform value) { }
+        public virtual void SetTarget(GameObject value) { }
 
         #endregion
     }
