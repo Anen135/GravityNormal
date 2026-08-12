@@ -21,7 +21,7 @@ namespace Lucy.Features.SpaceShip.Runtime
         public AISpaceShipWeapon weapon;
         public Rigidbody rb;
         public GravityBody gravityBody;
-        public Transform target;
+        public GameObject target;
 
         [Header("Settings SpaceShip AI Controller Combat")]
         [Min(0f)] public float fireDistance = 50f;
@@ -99,7 +99,7 @@ namespace Lucy.Features.SpaceShip.Runtime
                 return;
             }
 
-            Vector3 toTarget = target.position - transform.position;
+            Vector3 toTarget = target.transform.position - transform.position;
 
             distanceToTarget = toTarget.magnitude;
 
@@ -313,10 +313,11 @@ namespace Lucy.Features.SpaceShip.Runtime
 
         #region Public methods
 
-        public void SetTarget(Transform value)
+        public void SetTarget(GameObject value)
         {
             target = value;
             state = State.AttackRun;
+            weapon.SetTarget(target);
         }
 
         #endregion
@@ -340,7 +341,7 @@ namespace Lucy.Features.SpaceShip.Runtime
             if (target != null)
             {
                 Gizmos.color = Color.white;
-                Gizmos.DrawLine(position, target.position);
+                Gizmos.DrawLine(position, target.transform.position);
             }
 
             if (desiredFlightDirection.sqrMagnitude > 0.001f)

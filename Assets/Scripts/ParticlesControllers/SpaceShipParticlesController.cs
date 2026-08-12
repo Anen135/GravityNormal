@@ -17,7 +17,6 @@ namespace Lucy.Features.SpaceShip.Runtime
         #endregion
 
         #region Unity messages
-
         void OnEnable()
         {
             movement.OnThrustingChanged += HandleThrusting;

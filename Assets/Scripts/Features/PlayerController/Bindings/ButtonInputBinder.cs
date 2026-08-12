@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Lucy.Features.PlayerController.Bindings
 {
-    public enum ButtonActionType { Sprint, Crouch, Jump, Attack, Interact }
+    public enum ButtonActionType { Sprint, Crouch, Jump, Attack, Interact, Debug, GravitationView }
 
     [Serializable]
     public struct ButtonBinding : IInputBinding<ButtonActionType>
@@ -43,6 +43,20 @@ namespace Lucy.Features.PlayerController.Bindings
             ButtonActionType.Jump => player.Jump,
             ButtonActionType.Attack => player.Attack,
             ButtonActionType.Interact => player.Interact,
+            ButtonActionType.Debug => null, 
+            ButtonActionType.GravitationView => null,
+            _ => throw new ArgumentOutOfRangeException(nameof(action), action, null)
+        };
+
+        protected override InputAction GetAction(GlobalController.UIActions uI, ButtonActionType action) => action switch
+        {
+            ButtonActionType.Sprint => null,
+            ButtonActionType.Crouch => null,
+            ButtonActionType.Jump => null,
+            ButtonActionType.Attack => null,
+            ButtonActionType.Interact => null,
+            ButtonActionType.Debug => uI.Debug,
+            ButtonActionType.GravitationView => uI.GravitationView,
             _ => throw new ArgumentOutOfRangeException(nameof(action), action, null)
         };
 

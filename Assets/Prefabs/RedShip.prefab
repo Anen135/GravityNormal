@@ -637,15 +637,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab9e96cf87bf3840b281fbb42d2096d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lucy.Features.SpaceShip.Runtime.SpaceShipParticlesController
-  movement: {fileID: 0}
+  movement: {fileID: 6706404799670071085}
   rotationSmoke:
   - {fileID: 3799210788912942737}
   - {fileID: 7890358351251980580}
   - {fileID: 8351441388211145648}
   thrustFire:
-  - {fileID: 0}
+  - {fileID: 5033860609257413840}
   brakingAura:
-  - {fileID: 0}
+  - {fileID: 745700021171261077}
 --- !u!114 &2039639565997515651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,6 +1281,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3891110681997121727}
   m_SourcePrefab: {fileID: 100100000, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+--- !u!198 &5033860609257413840 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8891297334280618237, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+  m_PrefabInstance: {fileID: 4521585837836737581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5121939542788796210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8767152486562788127, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
@@ -1521,5 +1526,10 @@ PrefabInstance:
 --- !u!4 &745700021171261075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5824670795371433374, guid: f6fd568b816c64943a44efc3add3a881, type: 3}
+  m_PrefabInstance: {fileID: 6524626303048401677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &745700021171261077 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5824670795371433368, guid: f6fd568b816c64943a44efc3add3a881, type: 3}
   m_PrefabInstance: {fileID: 6524626303048401677}
   m_PrefabAsset: {fileID: 0}

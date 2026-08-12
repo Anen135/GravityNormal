@@ -9,6 +9,7 @@ public class DisplayDistanceToObject : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (distanceText == null) return;
         if (targetObjects.Length == 0)
         {
             distanceText.text = "No target objects assigned.";

@@ -17,6 +17,17 @@ namespace Lucy.Features.PlayerController.Bindings
             foreach (action_t actionType in Enum.GetValues(typeof(action_t)))
             {
                 InputAction action = GetAction(player, actionType);
+                if (action == null) continue;
+                foreach (InputPhase phase in Enum.GetValues(typeof(InputPhase))) subscriptions.Add(SubscribeInput(action, phase, context => Dispatch(actionType, phase, context)));
+            }
+        }
+
+        public void Bind(GlobalController.UIActions uI, DisposableGroup subscriptions)
+        {
+            foreach (action_t actionType in Enum.GetValues(typeof(action_t)))
+            {
+                InputAction action = GetAction(uI, actionType);
+                if (action == null) continue;
                 foreach (InputPhase phase in Enum.GetValues(typeof(InputPhase))) subscriptions.Add(SubscribeInput(action, phase, context => Dispatch(actionType, phase, context)));
             }
         }
@@ -61,6 +72,7 @@ namespace Lucy.Features.PlayerController.Bindings
 
         #region Abstract Methods
         protected abstract InputAction GetAction(GlobalController.PlayerActions player, action_t action);
+        protected virtual InputAction GetAction(GlobalController.UIActions uI, action_t action) { return null; }
         protected abstract void InvokeBinding(binding_t binding, InputAction.CallbackContext context);
 
         #endregion

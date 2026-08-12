@@ -9,7 +9,6 @@ namespace Lucy.Features.SpaceShip.Runtime
 
         [Header("References AI SpaceShip Weapon")]
         public Transform weaponPivot;
-        public GameObject target;
 
         [Header("Settings AI SpaceShip Weapon")]
         [Min(0f)] public float rotationSpeed = 180f;
@@ -21,6 +20,7 @@ namespace Lucy.Features.SpaceShip.Runtime
         [Header("Debug")]
         public Rigidbody targetRigidbody;
         public Rigidbody projectileRigidbody;
+        public GameObject target;
 
         public bool isAimed;
 

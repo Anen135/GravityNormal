@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2983282089925037182}
   - component: {fileID: 382463353611982054}
   - component: {fileID: 6315637002076338002}
+  - component: {fileID: 5959351062130730287}
   m_Layer: 0
   m_Name: Shard
   m_TagString: Untagged
@@ -32,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7709476, y: 0.073586665, z: -0.10521417, w: 0.62382275}
   m_LocalPosition: {x: -0.078000486, y: 0.0658, z: 0.02830017}
-  m_LocalScale: {x: 0.101942375, y: 0.101942375, z: 0.10194237}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -71.153, y: 128.15, z: -130.748}
@@ -175,5 +176,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5959351062130730287}
+        m_TargetAssemblyTypeName: ParticleHelper, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   entity: {fileID: 382463353611982054}
+--- !u!114 &5959351062130730287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382611078136271509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9caace6aae5014b8bd6c8d97eb59dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleHelper
+  particles:
+  - {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
+  sizeMultiplier: 5
+  particleSystems: []

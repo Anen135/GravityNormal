@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1891495367848619716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5810696265393227948}
+  - component: {fileID: 1069285075155026896}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5810696265393227948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891495367848619716}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 766992097926290419}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1069285075155026896
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891495367848619716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4382041718991239072
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +67,9 @@ GameObject:
   - component: {fileID: 6372759015059307411}
   - component: {fileID: 3394445898513852715}
   - component: {fileID: 5459169498554732039}
+  - component: {fileID: 5401423367593940135}
+  - component: {fileID: 964066329671121131}
+  - component: {fileID: 6783068929044006654}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -35,6 +91,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8125503807895515265}
+  - {fileID: 5810696265393227948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7718509422060259992
@@ -127,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lucy.Core.Entity
-  maxHealth: 1000
+  maxHealth: 100
   currentHealth: 0
   immortal: 0
   showLookDirection: 0
@@ -148,8 +205,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5401423367593940135}
+        m_TargetAssemblyTypeName: ParticleHelper, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 964066329671121131}
+        m_TargetAssemblyTypeName: ShardSpawner, Assembly-CSharp
+        m_MethodName: SpawnMany
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 12
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   entity: {fileID: 3394445898513852715}
+--- !u!114 &5401423367593940135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382041718991239072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9caace6aae5014b8bd6c8d97eb59dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleHelper
+  particles:
+  - {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  sizeMultiplier: 50
+  particleSystems: []
+--- !u!114 &964066329671121131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382041718991239072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ede62b8df98e5444a625b48392f6576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShardSpawner
+  spawningPrefab: {fileID: 5382611078136271509, guid: b659f5bb06588dd4e8c4272ea1bbe9bd, type: 3}
+  spawnArea: {fileID: 6372759015059307411}
+  scaleMin: 1
+  scaleMax: 10
+  debugEnabled: 0
+--- !u!114 &6783068929044006654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382041718991239072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c408fda0c28064cb7d1ec29f4cf6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RadarPlanet
+  gravityField: {fileID: 5046668797364256647}
+  center: {fileID: 766992097926290419}
+  displayName: 
+  isRegistered: 0
 --- !u!1 &8192360016445679939
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +295,7 @@ GameObject:
   - component: {fileID: 4954246019357177774}
   - component: {fileID: 5046668797364256647}
   m_Layer: 0
-  m_Name: GravityZone
+  m_Name: Aeloria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

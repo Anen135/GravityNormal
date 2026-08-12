@@ -13,13 +13,16 @@ namespace Lucy.Features.SpaceShip.Runtime
         public Rigidbody rb;
 
         [Header("Settings SpaceShip Movement")]
+        [Min(0.001f)] public float movementThrashold = 0.001f;
         [Min(0f)] public float forwardAcceleration = 15f;
         [Min(0f)] public float brakingAcceleration = 20f;
         [Min(0f)] public float rotationAcceleration = 5f;
+        [Min(0f)] public float redirectAcceleration = 20f;
 
         [Header("Debug")]
         public bool isThrusting;
         public bool isBraking;
+        public bool isRedirecting;
         public float rollInput;
         public Vector3 rotationInput;
         public Vector3 appliedAcceleration;
@@ -56,45 +59,47 @@ namespace Lucy.Features.SpaceShip.Runtime
             appliedAcceleration = Vector3.zero;
             appliedAngularAcceleration = Vector3.zero;
 
+            // Spaceship stopped
             if (!MovementAllowed)
             {
                 OnRotationApplied?.Invoke(Vector3.zero);
                 return;
             }
+            
+            if (isThrusting) appliedAcceleration += transform.forward * forwardAcceleration;
 
-            if (isThrusting)
-                appliedAcceleration += transform.forward * forwardAcceleration;
-
-            if (isBraking && rb.linearVelocity.sqrMagnitude > 0.001f)
+            // Spaceship in motion
+            if (isBraking && rb.linearVelocity.sqrMagnitude > movementThrashold)
             {
-                float acceleration = Mathf.Min(
-                    brakingAcceleration,
-                    rb.linearVelocity.magnitude / Time.fixedDeltaTime
-                );
+                float acceleration = Mathf.Min( brakingAcceleration, rb.linearVelocity.magnitude / Time.fixedDeltaTime );
 
                 appliedAcceleration -= rb.linearVelocity.normalized * acceleration;
             }
 
-            if (appliedAcceleration.sqrMagnitude > 0.0001f)
-                rb.AddForce(appliedAcceleration, ForceMode.Acceleration);
+            if (isRedirecting && rb.linearVelocity.sqrMagnitude > movementThrashold)
+            {
+                Vector3 velocity = rb.linearVelocity;
+                float speed = velocity.magnitude;
+                if (speed < movementThrashold) return;
+                Vector3 acceleration = (transform.forward * speed - velocity) / Time.fixedDeltaTime;
+                acceleration = Vector3.ClampMagnitude(acceleration, redirectAcceleration );
+                appliedAcceleration += acceleration;
 
+            }
+
+            if (appliedAcceleration.sqrMagnitude > movementThrashold) rb.AddForce(appliedAcceleration, ForceMode.Acceleration);
+
+            // Spaceship rotation
             rotationInput = GetRotationInput();
 
-            if (rotationInput.sqrMagnitude < 0.001f)
+            if (rotationInput.sqrMagnitude < movementThrashold)
             {
                 OnRotationApplied?.Invoke(Vector3.zero);
                 return;
             }
 
-            appliedAngularAcceleration =
-                new Vector3(-rotationInput.y, rotationInput.x, rotationInput.z)
-                * rotationAcceleration;
-
-            rb.AddRelativeTorque(
-                appliedAngularAcceleration,
-                ForceMode.Acceleration
-            );
-
+            appliedAngularAcceleration = new Vector3(-rotationInput.y, rotationInput.x, rotationInput.z) * rotationAcceleration;
+            rb.AddRelativeTorque( appliedAngularAcceleration, ForceMode.Acceleration );
             OnRotationApplied?.Invoke(appliedAngularAcceleration);
         }
 
@@ -123,6 +128,13 @@ namespace Lucy.Features.SpaceShip.Runtime
             if (isThrusting == value) return;
 
             isThrusting = value;
+            OnThrustingChanged?.Invoke(value);
+        }
+
+        public void SetRedirecting(bool value)
+        {
+            if (isRedirecting == value) return;
+            isRedirecting = value;
             OnThrustingChanged?.Invoke(value);
         }
 

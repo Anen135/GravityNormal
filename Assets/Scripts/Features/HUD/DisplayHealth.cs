@@ -10,6 +10,11 @@ public class DisplayHealth : MonoBehaviour
 
     void OnEnable()
     {
+        if (healthBar == null)
+        {
+            Debug.LogError("Health bar is not assigned.", this);
+            return;
+        }
         if (entity == null) Debug.LogError("Entity is not assigned.", this);
         healthBar.maxValue = entity.MaxHealth;
         healthBar.value = entity.Health;

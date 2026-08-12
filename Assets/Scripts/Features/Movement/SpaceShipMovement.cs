@@ -14,6 +14,7 @@ namespace Lucy.Features.SpaceShip.Runtime
         [Header("Debug")]
         public bool isStabilizing;
 
+
         #endregion
 
         #region Unity messages
