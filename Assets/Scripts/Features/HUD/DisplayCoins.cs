@@ -20,6 +20,6 @@ public class DisplayCoins : MonoBehaviour
     void UpdateCoinDisplay(int newCoinCount)
     {
         if (coinText == null || coinCounter == null) Debug.LogWarning("Coin Text or Coin Counter is not assigned.", this);
-        else coinText.text = $"Coins: {newCoinCount}/{coinCounter.TargetCount}";
+        else coinText.text = $"Couins: {newCoinCount}/{coinCounter.TargetCount}";
     }
 }

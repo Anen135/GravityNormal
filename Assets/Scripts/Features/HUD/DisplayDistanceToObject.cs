@@ -29,6 +29,6 @@ public class DisplayDistanceToObject : MonoBehaviour
             }
         }
 
-        distanceText.text = $"Distance to {closestObjectName}: {closestDistance:F2} m";
+        distanceText.text = $"{closestObjectName}:   {closestDistance:F2}m";
     }
 }

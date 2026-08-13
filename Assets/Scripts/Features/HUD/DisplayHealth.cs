@@ -5,38 +5,35 @@ using UnityEngine.UI;
 
 public class DisplayHealth : MonoBehaviour
 {
-    public Slider healthBar;
+    public TMPro.TMP_Text healthText;
+    public Image healthBar;
     public Entity entity;
 
     void OnEnable()
     {
-        if (healthBar == null)
-        {
-            Debug.LogError("Health bar is not assigned.", this);
-            return;
-        }
+        if (healthBar == null) { Debug.LogError("Health bar is not assigned.", this); return; }
         if (entity == null) Debug.LogError("Entity is not assigned.", this);
-        healthBar.maxValue = entity.MaxHealth;
-        healthBar.value = entity.Health;
-        entity.OnDamageTaken += DamageTaken;
+        entity.OnDamageTaken += UpdateHealth;
+        UpdateHealth(0f, null);
         SetHealthBarColor();
     }
 
     void OnDisable()
     {
-        entity.OnDamageTaken -= DamageTaken;
+        entity.OnDamageTaken -= UpdateHealth;
     } 
 
-    void DamageTaken(float arg1, object arg2)
+    void UpdateHealth(float arg1, object arg2)
     {
-        healthBar.value = entity.Health;
+        healthBar.fillAmount = entity.Health/entity.MaxHealth;
+        healthText.text = $"{entity.Health/entity.MaxHealth*100f:0}%";
         SetHealthBarColor();
     }
 
     void SetHealthBarColor()
     {
-        if (entity.Health < 30) healthBar.fillRect.GetComponent<Image>().color = Color.red;
-        else if (entity.Health < 60) healthBar.fillRect.GetComponent<Image>().color = Color.yellow;
-        else if (entity.Health < 100) healthBar.fillRect.GetComponent<Image>().color = Color.green;
+        if (entity.Health < 30) healthBar.color = Color.red;
+        else if (entity.Health < 60) healthBar.color = Color.yellow;
+        else if (entity.Health < 100) healthBar.color = Color.green;
     }
 }

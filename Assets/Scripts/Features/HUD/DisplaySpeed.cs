@@ -1,14 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplaySpeed : MonoBehaviour
 {
     [Header("Dependencies")]
     public Rigidbody rb;
     public TMPro.TMP_Text speedText;
+    public Image speedBar;
 
     void FixedUpdate()
     {
-        if (rb == null || speedText == null) Debug.LogWarning("Rigidbody or Speed Text is not assigned.", this);
-        else speedText.text = $"Speed: {rb.linearVelocity.magnitude:F2} m/s";
+        if (rb == null) {Debug.LogWarning("Rigidbody is not assigned.", this); return;}
+        if (speedText != null) speedText.text = $"{rb.linearVelocity.magnitude:F2} m/s";
+        if (speedBar != null) speedBar.fillAmount = rb.linearVelocity.magnitude / 100f;
     }
 }
