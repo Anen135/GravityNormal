@@ -885,6 +885,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// TileManager.op_Implicit
 	// TileManager.op_Equality
 	// TileManager.op_Inequality
+	// GlobalLeftClickEvent.op_Implicit
+	// GlobalLeftClickEvent.op_Equality
+	// GlobalLeftClickEvent.op_Inequality
 	// ChatController.op_Implicit
 	// ChatController.op_Equality
 	// ChatController.op_Inequality
@@ -1338,6 +1341,21 @@ namespace Unity.VisualScripting.Generated.Aot
 	// Lucy.Core.FSM.DD.Transition.op_Implicit
 	// Lucy.Core.FSM.DD.Transition.op_Equality
 	// Lucy.Core.FSM.DD.Transition.op_Inequality
+	// Lucy.Features.SpaceSectors.Runtime.RandomSectorContentGenerator.op_Implicit
+	// Lucy.Features.SpaceSectors.Runtime.RandomSectorContentGenerator.op_Equality
+	// Lucy.Features.SpaceSectors.Runtime.RandomSectorContentGenerator.op_Inequality
+	// Lucy.Features.SpaceSectors.Runtime.SectorContentGenerator.op_Implicit
+	// Lucy.Features.SpaceSectors.Runtime.SectorContentGenerator.op_Equality
+	// Lucy.Features.SpaceSectors.Runtime.SectorContentGenerator.op_Inequality
+	// Lucy.Features.SpaceSectors.Runtime.SectorPersistentObject.op_Implicit
+	// Lucy.Features.SpaceSectors.Runtime.SectorPersistentObject.op_Equality
+	// Lucy.Features.SpaceSectors.Runtime.SectorPersistentObject.op_Inequality
+	// Lucy.Features.SpaceSectors.Runtime.SpaceSector.op_Implicit
+	// Lucy.Features.SpaceSectors.Runtime.SpaceSector.op_Equality
+	// Lucy.Features.SpaceSectors.Runtime.SpaceSector.op_Inequality
+	// Lucy.Features.SpaceSectors.Runtime.SpaceSectorManager.op_Implicit
+	// Lucy.Features.SpaceSectors.Runtime.SpaceSectorManager.op_Equality
+	// Lucy.Features.SpaceSectors.Runtime.SpaceSectorManager.op_Inequality
 	// Lucy.Features.Items.PickableItem.op_Implicit
 	// Lucy.Features.Items.PickableItem.op_Equality
 	// Lucy.Features.Items.PickableItem.op_Inequality
@@ -1458,6 +1476,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// Lucy.Features.UI.Runtime.AudioSettingsWindow.op_Implicit
 	// Lucy.Features.UI.Runtime.AudioSettingsWindow.op_Equality
 	// Lucy.Features.UI.Runtime.AudioSettingsWindow.op_Inequality
+	// Lucy.Features.UI.Runtime.PauseMenu.op_Implicit
+	// Lucy.Features.UI.Runtime.PauseMenu.op_Equality
+	// Lucy.Features.UI.Runtime.PauseMenu.op_Inequality
 	// Lucy.Features.UI.Runtime.ButtonHoverEffect.op_Implicit
 	// Lucy.Features.UI.Runtime.ButtonHoverEffect.op_Equality
 	// Lucy.Features.UI.Runtime.ButtonHoverEffect.op_Inequality
@@ -1789,6 +1810,8 @@ namespace Unity.VisualScripting.Generated.Aot
 	// --------------- Scene Stubs
 	// --------------- Scene Stubs
 	// RedShipSpawner..ctor
+	// --------------- Scene Stubs
+	// --------------- Scene Stubs
 	[UnityEngine.Scripting.PreserveAttribute()]
 	public class AotStubs
 	{
@@ -11961,6 +11984,41 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+		// GlobalLeftClickEvent.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void GlobalLeftClickEvent_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// GlobalLeftClickEvent.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void GlobalLeftClickEvent_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// GlobalLeftClickEvent.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void GlobalLeftClickEvent_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
 		// ChatController.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void ChatController_op_Implicit()
@@ -17246,6 +17304,181 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+		// Lucy.Features.SpaceSectors.Runtime.RandomSectorContentGenerator.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_RandomSectorContentGenerator_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.RandomSectorContentGenerator.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_RandomSectorContentGenerator_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.RandomSectorContentGenerator.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_RandomSectorContentGenerator_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SectorContentGenerator.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SectorContentGenerator_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SectorContentGenerator.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SectorContentGenerator_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SectorContentGenerator.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SectorContentGenerator_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SectorPersistentObject.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SectorPersistentObject_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SectorPersistentObject.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SectorPersistentObject_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SectorPersistentObject.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SectorPersistentObject_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SpaceSector.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SpaceSector_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SpaceSector.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SpaceSector_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SpaceSector.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SpaceSector_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SpaceSectorManager.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SpaceSectorManager_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SpaceSectorManager.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SpaceSectorManager_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.SpaceSectors.Runtime.SpaceSectorManager.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_SpaceSectors_Runtime_SpaceSectorManager_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
 		// Lucy.Features.Items.PickableItem.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void Lucy_Features_Items_PickableItem_op_Implicit()
@@ -18637,6 +18870,41 @@ namespace Unity.VisualScripting.Generated.Aot
 		// Lucy.Features.UI.Runtime.AudioSettingsWindow.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void Lucy_Features_UI_Runtime_AudioSettingsWindow_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.UI.Runtime.PauseMenu.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_UI_Runtime_PauseMenu_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.UI.Runtime.PauseMenu.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_UI_Runtime_PauseMenu_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Lucy.Features.UI.Runtime.PauseMenu.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Lucy_Features_UI_Runtime_PauseMenu_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
