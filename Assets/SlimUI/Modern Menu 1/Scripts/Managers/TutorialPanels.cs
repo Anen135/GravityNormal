@@ -14,6 +14,8 @@ namespace Lucy.Features.UI.Runtime
 
         [Header("Settings Tutorial Controller")]
         public string playerPrefsKey = "TutorialCompleted";
+        public bool showCursor;
+        public bool showIfCompleted;
 
         [Header("Debug")]
         public int currentPanelIndex;
@@ -40,7 +42,7 @@ namespace Lucy.Features.UI.Runtime
         {
             tutorialCompleted = PlayerPrefs.GetInt(playerPrefsKey, 0) != 0;
 
-            if (tutorialCompleted)
+            if (tutorialCompleted && !showIfCompleted)
             {
                 HideAllPanels();
                 SetHUDActive(true);
@@ -69,6 +71,7 @@ namespace Lucy.Features.UI.Runtime
             tutorialCompleted = false;
 
             SetHUDActive(false);
+            SetCursorVisible(showCursor);
             ShowPanel(currentPanelIndex);
 
             OnTutorialStarted?.Invoke();
@@ -97,6 +100,7 @@ namespace Lucy.Features.UI.Runtime
 
             HideAllPanels();
             SetHUDActive(true);
+            SetCursorVisible(false);
 
             PlayerPrefs.SetInt(playerPrefsKey, 1);
             PlayerPrefs.Save();
@@ -134,6 +138,12 @@ namespace Lucy.Features.UI.Runtime
         {
             if (hud != null)
                 hud.SetActive(active);
+        }
+
+        void SetCursorVisible(bool visible)
+        {
+            Cursor.visible = visible;
+            Cursor.lockState = visible ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 }

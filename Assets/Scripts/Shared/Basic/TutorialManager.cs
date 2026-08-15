@@ -26,18 +26,30 @@ namespace Lucy.Core.Basic
         [Tooltip("Активируется сразу после завершения туториала")]
         public GameObject zombieControlManagerObject;
 
+        [Header("Behavior Settings")]
+        [Tooltip("Показывать курсор во время туториала")]
+        public bool showCursor;
+        [Tooltip("Показывать туториал заново, даже если он уже был пройден")]
+        public bool showIfCompleted;
+
         int currentStep = 0;
         bool tutorialActive = true;
         bool isBusy = false;
 
         void Awake()
         {
-            if (PlayerPrefs.GetInt("TutorialDone", 0) == 1)
+            if (PlayerPrefs.GetInt("TutorialDone", 0) == 1 && !showIfCompleted)
             {
                 if (zombieControlManagerObject != null) zombieControlManagerObject.SetActive(true);
 
                 gameObject.SetActive(false);
                 return;
+            }
+
+            if (showCursor)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
 
@@ -132,6 +144,12 @@ namespace Lucy.Core.Basic
             
             if (panel != null)
                 panel.SetActive(false);
+
+            if (showCursor)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
             if (zombieControlManagerObject != null)
                 zombieControlManagerObject.SetActive(true);
