@@ -457,6 +457,8 @@ MonoBehaviour:
   - {fileID: 346503072}
   hud: {fileID: 2068834867}
   playerPrefsKey: TutorialCompleted
+  showCursor: 0
+  showIfCompleted: 0
   currentPanelIndex: 0
   tutorialActive: 0
   tutorialCompleted: 0
@@ -1947,7 +1949,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: TS1
+          m_StringArgument: FinishDemo
           m_BoolArgument: 0
         m_CallState: 2
   OnCountChanged:
