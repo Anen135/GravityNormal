@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,4 +20,13 @@ public class Counter : MonoBehaviour
         OnCountChanged.Invoke(Count);
         if (Count == TargetCount) OnFinished.Invoke();
     }
+
+    public void SetCount(int count)
+    {
+        Count = count;
+        OnCountChanged.Invoke(Count);
+        if (Count == TargetCount) OnFinished.Invoke();
+    }
+
+    public void SetTarget(int count) => TargetCount = count;
 }

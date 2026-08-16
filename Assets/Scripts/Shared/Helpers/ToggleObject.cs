@@ -4,8 +4,8 @@ using UnityEngine;
 public class ToggleObject : MonoBehaviour
 {
     public List<GameObject> targets;
-    public int index = 0;
-    public void Toggle() => targets.ForEach(go => go.SetActive(!go.activeSelf));
+    int index = 0;
+    public void Toggle() => targets.ForEach(go => go?.SetActive(!go.activeSelf));
     public void All(bool value) => targets.ForEach(go => go.SetActive(value));
 
     public void Next()

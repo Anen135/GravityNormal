@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lucy.Core.Entity
-  maxHealth: 100
+  maxHealth: 1000
   currentHealth: 0
   immortal: 0
   showLookDirection: 0

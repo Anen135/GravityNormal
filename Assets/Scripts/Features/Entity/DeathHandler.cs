@@ -9,5 +9,5 @@ public class DeathHandler : MonoBehaviour
     public Entity entity;
     void OnEnable() => entity.OnDeath += OnEntityDeath;
     void OnDisable() => entity.OnDeath -= OnEntityDeath;
-    void OnEntityDeath(object obj) => OnDeath?.Invoke();
+    void OnEntityDeath(object obj) { if (!gameObject.scene.isLoaded) return; OnDeath?.Invoke(); }
 }
