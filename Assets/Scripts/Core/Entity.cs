@@ -1,5 +1,6 @@
 // Core layer
 // Base object
+using Lucy.Features.Audio.Runtime;
 using UnityEngine;
 using System;
 
@@ -11,6 +12,11 @@ namespace Lucy.Core
         [Tooltip("The maximum health of the entity")] [SerializeField] protected float maxHealth = 100f;
         [Tooltip("The current health of the entity")] [SerializeField] protected float currentHealth;
         [Tooltip("Is the entity immortal?")] [SerializeField] protected bool immortal = false;
+
+        [Header("Entity Audio")]
+        [Tooltip("Sound played when the entity takes damage.")]
+        [SerializeField] protected AudioClip damageSound;
+        [Tooltip("Volume of the damage sound.")] [Range(0f, 1f)] [SerializeField] protected float damageSoundVolume = 1f;
 
         public float Health => currentHealth;
         public float MaxHealth => maxHealth;
@@ -44,6 +50,8 @@ namespace Lucy.Core
             currentHealth -= amount;
             currentHealth = Mathf.Max(currentHealth, 0);
 
+            PlayDamageSound();
+
             OnDamageTaken?.Invoke(amount, source);
 
             if (currentHealth <= 0) Die(source);
@@ -57,6 +65,16 @@ namespace Lucy.Core
             currentHealth = Mathf.Min(currentHealth, maxHealth);
 
             OnHealed?.Invoke(amount, source);
+        }
+
+        protected virtual void PlayDamageSound()
+        {
+            if (damageSound == null) return;
+
+            if (AudioSystem.Instance != null)
+                AudioSystem.Instance.PlaySFXAt(damageSound, transform.position, Mathf.Clamp01(damageSoundVolume));
+            else
+                AudioSource.PlayClipAtPoint(damageSound, transform.position, Mathf.Clamp01(damageSoundVolume));
         }
 
         public virtual void SetMaxHealth(float newMaxHealth, bool fullHeal = true)
