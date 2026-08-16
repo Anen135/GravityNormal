@@ -734,6 +734,11 @@ MonoBehaviour:
   healthText: {fileID: 0}
   healthBar: {fileID: 0}
   entity: {fileID: 1324655864008424462}
+--- !u!1 &99410539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4382041718991239072, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
+  m_PrefabInstance: {fileID: 521054470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &121268430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2134,30 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 278542570}
+        m_TargetAssemblyTypeName: Counter, Assembly-CSharp
+        m_MethodName: SetTarget
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9999
+          m_FloatArgument: 0
+          m_StringArgument: TS1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1966551795}
+        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
+        m_MethodName: All
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TS1
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 278542569}
         m_TargetAssemblyTypeName: Lucy.Core.Helpers.SceneHelper, Assembly-CSharp
         m_MethodName: LoadScene
@@ -2294,6 +2323,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326419979}
   m_CullTransparentMesh: 1
+--- !u!1 &327886006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4382041718991239072, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
+  m_PrefabInstance: {fileID: 1163787602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &332340850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2635623339253937514, guid: b0cd203579acf724486b1e2435ee79b4, type: 3}
@@ -2497,7 +2531,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3394445898513852715, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 361601470}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1855789304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
@@ -2840,7 +2874,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3394445898513852715, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 521054470}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 99410539}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
@@ -2851,7 +2885,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5401423367593940135, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 521054470}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 99410539}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a9caace6aae5014b8bd6c8d97eb59dc, type: 3}
@@ -3085,7 +3119,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3394445898513852715, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 765412426}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 971418534}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
@@ -3666,6 +3700,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1652143759095011289, guid: e2c1ac940434a5242b54d72b66654687, type: 3}
   m_PrefabInstance: {fileID: 2015210469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &971418534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4382041718991239072, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
+  m_PrefabInstance: {fileID: 765412426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &987970615 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 348193080139423485, guid: e2c1ac940434a5242b54d72b66654687, type: 3}
@@ -3862,7 +3901,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3394445898513852715, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 1163787602}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 327886006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
@@ -4973,7 +5012,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToggleObject
   targets:
   - {fileID: 1623029577}
-  index: 0
 --- !u!1001 &1647345329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5421,12 +5459,22 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1839703111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4382041718991239072, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
+  m_PrefabInstance: {fileID: 306140369564920048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1855789304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4382041718991239072, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
+  m_PrefabInstance: {fileID: 361601470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1877005302 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5401423367593940135, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 361601470}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1855789304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a9caace6aae5014b8bd6c8d97eb59dc, type: 3}
@@ -5649,6 +5697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1966551794}
+  - component: {fileID: 1966551795}
   m_Layer: 0
   m_Name: Planets
   m_TagString: Untagged
@@ -5676,6 +5725,24 @@ Transform:
   - {fileID: 361601471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1966551795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966551793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5ccb5ee1051394fb01479e1bd8c67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleObject
+  targets:
+  - {fileID: 1839703111}
+  - {fileID: 971418534}
+  - {fileID: 327886006}
+  - {fileID: 99410539}
+  - {fileID: 1855789304}
 --- !u!1001 &2015210469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6653,7 +6720,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3394445898513852715, guid: a1dd0d95d451bda4b9ec4e415b64e192, type: 3}
   m_PrefabInstance: {fileID: 306140369564920048}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1839703111}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac98f4a486ab3349950b21642680356, type: 3}
